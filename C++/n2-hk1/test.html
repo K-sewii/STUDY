@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Đăng ký tài khoản</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+
+      .fs {
+        width: 12cm;
+        margin-bottom: 15px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+
+      legend {
+        font-weight: bold;
+        padding: 0 10px;
+      }
+
+      .lb {
+        display: inline-block;
+        width: 4cm;
+        margin-bottom: 8px;
+      }
+
+      .lbhf {
+        display: inline-block;
+        width: 2cm;
+        margin-bottom: 8px;
+      }
+
+      .ip {
+        width: 7cm;
+        padding: 5px;
+        margin-bottom: 8px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+      }
+
+      .iphf {
+        width: 3cm;
+        padding: 5px;
+        margin-bottom: 8px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+      }
+
+      textarea {
+        display: inline-block;
+        width: 11cm;
+        height: 2cm;
+        padding: 5px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        margin-bottom: 8px;
+      }
+
+      input[type="radio"],
+      input[type="checkbox"] {
+        margin-right: 5px;
+      }
+
+      input[type="reset"],
+      input[type="submit"] {
+        padding: 8px 15px;
+        margin-right: 10px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        cursor: pointer;
+      }
+
+      input[type="submit"] {
+        background-color: #4caf50;
+        color: white;
+      }
+
+      input[type="reset"] {
+        background-color: #f44336;
+        color: white;
+      }
+
+      br {
+        margin-bottom: 8px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Đăng ký tài khoản</h1>
+
+    <form action="#" method="get">
+      <fieldset class="fs">
+        <legend>Thông tin đăng nhập</legend>
+        <label for="usrid" class="lb">Tên đăng nhập:</label>
+        <input
+          type="text"
+          name="usr"
+          id="usrid"
+          class="ip"
+          placeholder="Nhập tên tài khoản"
+        />
+        <br />
+        <label for="pswid" class="lb">Mật khẩu:</label>
+        <input
+          type="password"
+          name="psw"
+          id="pswid"
+          class="ip"
+          placeholder="Nhập mật khẩu"
+        />
+        <br />
+        <label for="repswid" class="lb">Xác nhận mật khẩu:</label>
+        <input
+          type="password"
+          name="repsw"
+          id="repswid"
+          class="ip"
+          placeholder="Nhập lại mật khẩu"
+        />
+      </fieldset>
+
+      <fieldset class="fs">
+        <legend>Thông tin cá nhân</legend>
+        <label for="lnid" class="lbhf">Họ:</label>
+        <input type="text" name="ln" id="lnid" class="iphf" />
+        <label for="fnid" class="lbhf">Tên:</label>
+        <input type="text" name="fn" id="fnid" class="iphf" />
+        <br />
+        <label for="emailid" class="lb">Email:</label>
+        <input
+          type="text"
+          name="email"
+          id="emailid"
+          class="ip"
+          placeholder="abc@gmail.com"
+        />
+        <br />
+        <label for="phoneid" class="lb">Số điện thoại:</label>
+        <input
+          type="text"
+          name="phone"
+          id="phoneid"
+          class="ip"
+          placeholder="Nhập số điện thoại"
+        />
+        <br />
+        <label class="lb">Giới tính:</label>
+        <input type="radio" name="gender" value="Nam" id="Nam" checked />
+        <label for="Nam" class="lbhf">Nam</label>
+        <input type="radio" name="gender" value="Nu" id="Nu" />
+        <label for="Nu" class="lbhf">Nữ</label>
+      </fieldset>
+
+      <fieldset class="fs">
+        <legend>Sở thích</legend>
+        <input type="checkbox" id="ttid" name="tt" value="TheThao" />
+        <label for="ttid" class="lbhf">Thể thao</label>
+        <input type="checkbox" id="nhacid" name="nhac" value="AmNhac" />
+        <label for="nhacid" class="lbhf">Âm nhạc</label>
+        <input type="checkbox" id="gameid" name="game" value="Game" />
+        <label for="gameid" class="lbhf">Game</label>
+        <br />
+        <label for="introid">Giới thiệu bản thân:</label>
+        <textarea name="intro" id="introid"></textarea>
+      </fieldset>
+
+      <br />
+      <input type="reset" name="reset" id="reset" value="Reset form" />
+      <input
+        type="submit"
+        name="submit"
+        id="submit"
+        value="Đăng ký tài khoản"
+      />
+    </form>
+  </body>
+</html>

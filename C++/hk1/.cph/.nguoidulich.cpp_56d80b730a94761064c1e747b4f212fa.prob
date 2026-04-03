@@ -1,0 +1,1 @@
+{"name":"Local: nguoidulich","url":"d:\\Games 3D\\binforVSC\\Hoc C++\\nguoidulich.cpp","tests":[{"id":1734366930842,"input":"4\n0 20 35 10\n20 0 90 50\n35 90 0 12\n10 50 12 0","output":"117"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\Games 3D\\binforVSC\\Hoc C++\\nguoidulich.cpp","group":"local","local":true}

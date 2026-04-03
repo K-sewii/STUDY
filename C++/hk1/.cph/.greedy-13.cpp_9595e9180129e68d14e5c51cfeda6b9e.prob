@@ -1,0 +1,1 @@
+{"name":"Local: greedy-13","url":"d:\\Games 3D\\binforVSC\\Hoc C++\\greedy-13.cpp","tests":[{"id":1735977368832,"input":"3\n2\nABB\n2\nAAA\n3\nGEEKSFORGEEKS","output":"1\nBAB\n-1\n1\nEGKEGKESFESOR"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\Games 3D\\binforVSC\\Hoc C++\\greedy-13.cpp","group":"local","local":true}

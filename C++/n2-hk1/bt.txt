@@ -1,0 +1,126 @@
+procedure Hamilton(K)
+begin
+    for y thuoc Ke(X[K-1]) do
+    if(k = n + 1) and y = v0 then 
+    ghi_nhan (x1,...,xn, v0);
+    else 
+        if not daxet[y] then 
+        begin   
+            x[k] := y;
+            daxet[y] = true;
+            hamilton(k+1);
+            daxet[y] = false;
+        end 
+    end
+
+procedure Euler()
+buoc 1: kiem tra do thi lien thong. CHon 1 dinh u co bac > 0, thuc hien dfs/bfs tu u neu
+        ton tai dinh bac > 0 ma chua tham 
+        return false
+buoc 2: kiem tra bac dinh
+    for dinh v trong G 
+        if deg(v) % 2 != 0;
+        return false
+    return true
+
+
+produrece dijkstra()
+begin
+    for v thuoc V do 
+    begin 
+        d[v] = a[s,v];
+        truoc[v] = s;
+    end
+d[s] = 0; T = V / {s};
+ while T != !0 do 
+ begin
+    u la dinh thuoc T thoa man d[u] nho nhat
+    T := T / {u};
+    for v thuoc T do
+        if(d[v] > d[u] + a[u,v]);
+        begin
+            d[v] = d[u] + a[u,v];
+            Truoc[v] = u;
+        end    
+    end
+end
+procedure Prim
+for each u thuoc G.V 
+ u.key = vo cung
+    u.pi = nil
+r.key = 0
+Q = G.V 
+while Q != rong
+    u = Extractmin(Q);
+    for each v thuoc G.adj[u]
+        if v E Q and w[u,v] < v.key
+        v.key = w[u,v]
+        v.pi  = u
+
+
+procedure Kuskal
+begin
+ T:= rong
+ while |T| < n - 1 and E != rong do
+ begin 
+ CHon e la canh nho nhat trong E 
+ E:= E \ {e}
+ if ( T U {e} kh chua chu trinh ) T := T U {e};
+ end 
+ if(|T| < n - 1) do thi kh lien thong 
+
+
+producere Prim
+begin
+    for each u thuoc G.v
+        u.key = vo cung
+        u.pi = nil
+    r.key = 0
+    Q = G.v
+    while Q != rong do 
+        u = Extractmin(Q)
+        for each v thuoc q.adj[u] do 
+            if(v thuoc Q and w(u,v) < v.key)
+            ...
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+produrece Kuskal()
+begin
+    T := rong
+    while(|T| < n - 1 and E != rong) do 
+    begin
+        chon e la canh nho nhat trong E 
+        E := E \ {e};
+        if( T U {e} kh co chu trinh) T := T U {e}
+    end
+    if( T < n-1 ) do thi kh lien thong
+
+
+procedure Hamilton(K)
+begin 
+    for y thuoc Ke(X[K-1]) do 
+    if(k = n +1 and y = v0) then ghi_nhan
+    else 
+     if not daxet[y] then
+     begin
+        daxet = true
+        X[k] = y
+        hamilton(K+1)
+        daxet = false
+end
+BEGIN 
+    for v thuoc V do daxet[v] = false
+
+    

@@ -1,0 +1,1 @@
+{"name":"Local: Floyd","url":"d:\\Games 3D\\binforVSC\\C++\\lythuyetdothi\\Floyd.cpp","tests":[{"id":1737656417322,"input":"5 6\n1 2 6\n1 3 7\n2 4 8\n3 4 9\n3 5 1\n4 5 2\n3\n1 5\n2 5\n4 3","output":"8\n10\n3"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\Games 3D\\binforVSC\\C++\\lythuyetdothi\\Floyd.cpp","group":"local","local":true}

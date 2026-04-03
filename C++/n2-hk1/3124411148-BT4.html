@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <title>BÀI TẬP JAVASCRIPT CƠ BẢN</title>
+    <style>
+      body {
+        font-family: Arial;
+        padding: 20px;
+        background: #f9f9f9;
+      }
+      h2 {
+        color: #0066cc;
+      }
+      input,
+      button {
+        margin: 5px;
+        padding: 5px;
+      }
+      .result {
+        background: white;
+        padding: 10px;
+        border: 1px solid #ccc;
+        margin-top: 10px;
+        white-space: pre-line;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>1️⃣ Tính diện tích & chu vi</h2>
+    <label>Cạnh hình vuông:</label><input id="canh" /><br />
+    <label>Bán kính hình tròn:</label><input id="r" /><br />
+    <label>3 cạnh tam giác:</label>
+    <input id="a" /> <input id="b" /> <input id="c" /><br />
+    <button onclick="bai1()">Tính</button>
+    <div id="kq1" class="result"></div>
+
+    <hr />
+
+    <h2>2️⃣ Ước số chung lớn nhất & Bội số chung nhỏ nhất</h2>
+    <input id="x1" /> <input id="x2" />
+    <button onclick="bai2()">Tính</button>
+    <div id="kq2" class="result"></div>
+
+    <hr />
+
+    <h2>3️⃣ Kiểm tra số</h2>
+    <input id="n3" placeholder="Nhập số n" />
+    <button onclick="bai3()">Kiểm tra</button>
+    <div id="kq3" class="result"></div>
+
+    <hr />
+
+    <h2>4️⃣ Liệt kê số nguyên tố từ 1 đến n</h2>
+    <input id="n4" placeholder="Nhập n" />
+    <button onclick="bai4()">Xuất</button>
+    <div id="kq4" class="result"></div>
+
+    <hr />
+
+    <h2>5️⃣ Tính S = -1 + 11 - 22 + 33 - 44 + … + (-1)^(n+1)(n²)</h2>
+    <input id="n5" placeholder="Nhập n" />
+    <button onclick="bai5()">Tính</button>
+    <div id="kq5" class="result"></div>
+
+    <hr />
+
+    <h2>6️⃣ Giải phương trình</h2>
+    <p>Bậc 1: ax + b = 0 / Bậc 2: ax² + bx + c = 0</p>
+    <input id="a6" /> <input id="b6" /> <input id="c6" />
+    <button onclick="bai6()">Giải</button>
+    <div id="kq6" class="result"></div>
+
+    <hr />
+
+    <h2>7️⃣ Mảng số nguyên</h2>
+    <input
+      id="arr7"
+      placeholder="Nhập mảng cách nhau bằng dấu phẩy (VD: 1,5,-2,3)"
+    />
+    <button onclick="bai7()">Xử lý</button>
+    <div id="kq7" class="result"></div>
+
+    <hr />
+
+    <h2>8️⃣ Tam giác số tăng dần</h2>
+    <input id="n8" placeholder="Nhập chiều cao n" />
+    <button onclick="bai8()">Xuất</button>
+    <div id="kq8" class="result"></div>
+
+    <hr />
+
+    <h2>9️⃣ Chuỗi ký tự</h2>
+    <input id="str9" placeholder="Nhập chuỗi" />
+    <button onclick="bai9()">Xử lý</button>
+    <div id="kq9" class="result"></div>
+
+    <hr />
+
+    <h2>🔟 Mảng chuỗi</h2>
+    <input id="arr10" placeholder="Nhập các chuỗi cách nhau dấu phẩy" />
+    <button onclick="bai10()">Xử lý</button>
+    <div id="kq10" class="result"></div>
+
+    <script>
+      // ======= Các hàm dùng chung =======
+      function laNguyenTo(n) {
+        if (n < 2) return false;
+        for (let i = 2; i <= Math.sqrt(n); i++) if (n % i == 0) return false;
+        return true;
+      }
+      function laChinhPhuong(n) {
+        return Number.isInteger(Math.sqrt(n));
+      }
+      function laHoanHao(n) {
+        let t = 0;
+        for (let i = 1; i < n; i++) if (n % i == 0) t += i;
+        return t === n;
+      }
+      function UCLN(a, b) {
+        while (b != 0) {
+          let t = b;
+          b = a % b;
+          a = t;
+        }
+        return a;
+      }
+      function BCNN(a, b) {
+        return (a * b) / UCLN(a, b);
+      }
+
+      // ======= Bài 1 =======
+      function bai1() {
+        let kq = "";
+        let canh = Number(document.getElementById("canh").value);
+        let r = Number(document.getElementById("r").value);
+        let a = Number(document.getElementById("a").value);
+        let b = Number(document.getElementById("b").value);
+        let c = Number(document.getElementById("c").value);
+        kq += `Hình vuông: S=${canh ** 2}, P=${4 * canh}\n`;
+        kq += `Hình tròn: S=${(Math.PI * r * r).toFixed(2)}, P=${(
+          2 *
+          Math.PI *
+          r
+        ).toFixed(2)}\n`;
+        if (a + b > c && a + c > b && b + c > a) {
+          let p = (a + b + c) / 2;
+          let S = Math.sqrt(p * (p - a) * (p - b) * (p - c));
+          kq += `Tam giác: S=${S.toFixed(2)}, P=${a + b + c}`;
+        } else kq += "Không phải tam giác!";
+        document.getElementById("kq1").innerText = kq;
+      }
+
+      // ======= Bài 2 =======
+      function bai2() {
+        let a = Number(document.getElementById("x1").value);
+        let b = Number(document.getElementById("x2").value);
+        document.getElementById("kq2").innerText = `UCLN = ${UCLN(
+          a,
+          b
+        )}\nBCNN = ${BCNN(a, b)}`;
+      }
+
+      // ======= Bài 3 =======
+      function bai3() {
+        let n = Number(document.getElementById("n3").value);
+        let kq = `${n} là số nguyên tố? ${laNguyenTo(n)}\n`;
+        kq += `${n} là số chính phương? ${laChinhPhuong(n)}\n`;
+        kq += `${n} là số hoàn hảo? ${laHoanHao(n)}`;
+        document.getElementById("kq3").innerText = kq;
+      }
+
+      // ======= Bài 4 =======
+      function bai4() {
+        let n = Number(document.getElementById("n4").value);
+        let ds = [];
+        for (let i = 2; i <= n; i++) if (laNguyenTo(i)) ds.push(i);
+        document.getElementById(
+          "kq4"
+        ).innerText = `Các số nguyên tố từ 1 đến ${n}: ${ds.join(", ")}`;
+      }
+
+      // ======= Bài 5 =======
+      function bai5() {
+        let n = Number(document.getElementById("n5").value);
+        let S = 0;
+        for (let i = 1; i <= n; i++) S += Math.pow(-1, i + 1) * (i * i);
+        document.getElementById("kq5").innerText = `S = ${S}`;
+      }
+
+      // ======= Bài 6 =======
+      function bai6() {
+        let a = Number(document.getElementById("a6").value);
+        let b = Number(document.getElementById("b6").value);
+        let c = Number(document.getElementById("c6").value);
+        let kq = "";
+        if (a === 0 && b === 0 && c === 0) kq = "PT vô số nghiệm";
+        else if (a === 0 && b === 0) kq = "PT vô nghiệm";
+        else if (a === 0) kq = `PT bậc 1: x = ${-c / b}`;
+        else {
+          let delta = b * b - 4 * a * c;
+          if (delta < 0) kq = "PT vô nghiệm";
+          else if (delta == 0) kq = `Nghiệm kép: x = ${-b / (2 * a)}`;
+          else {
+            let x1 = (-b + Math.sqrt(delta)) / (2 * a);
+            let x2 = (-b - Math.sqrt(delta)) / (2 * a);
+            kq = `x1 = ${x1}, x2 = ${x2}`;
+          }
+        }
+        document.getElementById("kq6").innerText = kq;
+      }
+
+      // ======= Bài 7 =======
+      function bai7() {
+        let arr = document.getElementById("arr7").value.split(",").map(Number);
+        let duong = arr.filter((x) => x > 0);
+        let minDuong = Math.min(...duong);
+        let giam = [...arr].sort((a, b) => b - a);
+        let dao = [...arr].reverse();
+        document.getElementById(
+          "kq7"
+        ).innerText = `Số dương nhỏ nhất: ${minDuong}\nMảng giảm dần: ${giam}\nMảng đảo: ${dao}`;
+      }
+
+      // ======= Bài 8 =======
+      function bai8() {
+        let n = Number(document.getElementById("n8").value);
+        let dem = 1,
+          tongChan = 0,
+          tongCot1 = 0,
+          tongCuoi = 0;
+        let out = "";
+        for (let i = 1; i <= n; i++) {
+          let dong = [];
+          for (let j = 1; j <= i; j++) {
+            dong.push(dem);
+            if (dem % 2 == 0) tongChan += dem;
+            if (j == 1) tongCot1 += dem;
+            if (i == n) tongCuoi += dem;
+            dem++;
+          }
+          out += dong.join(" ") + "\\n";
+        }
+        out += `Tổng số chẵn: ${tongChan}\\nTổng cột đầu tiên: ${tongCot1}\\nTổng dòng cuối: ${tongCuoi}`;
+        document.getElementById("kq8").innerText = out;
+      }
+
+      // ======= Bài 9 =======
+      function bai9() {
+        let s = document.getElementById("str9").value;
+        let dao = s.split("").reverse().join("");
+        let hoa = s.toUpperCase();
+        document.getElementById(
+          "kq9"
+        ).innerText = `Đảo chuỗi: ${dao}\nIn hoa: ${hoa}`;
+      }
+
+      // ======= Bài 10 =======
+      function bai10() {
+        let arr = document.getElementById("arr10").value.split(",");
+        let sapxep = [...arr].sort();
+        let maxIndex = arr.reduce(
+          (max, cur, i, a) => (cur.length > a[max].length ? i : max),
+          0
+        );
+        document.getElementById(
+          "kq10"
+        ).innerText = `Sắp xếp: ${sapxep}\nVị trí chuỗi dài nhất: ${maxIndex}`;
+      }
+    </script>
+  </body>
+</html>

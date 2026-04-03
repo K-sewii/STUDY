@@ -1,0 +1,213 @@
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import java.util.*;
+
+// ======================= ENUM ==========================
+enum OrderStatus {
+    NEW,
+    PAID,
+    CANCELED
+}
+
+// ======================= CLASS PRODUCTVARIANT ==========================
+class ProductVariant {
+    private String id;
+    private String name;
+    private BigDecimal price;
+
+    public ProductVariant() {}
+
+    public ProductVariant(String id, String name, BigDecimal price) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+    }
+
+    public void nhap(Scanner sc) {
+        System.out.print("Nhập tên sản phẩm: ");
+        this.name = sc.nextLine();
+        System.out.print("Nhập giá sản phẩm: ");
+        this.price = new BigDecimal(sc.nextLine());
+        this.id = "V" + new Random().nextInt(1000);
+    }
+
+    public BigDecimal getPrice() { return price; }
+    public String getName() { return name; }
+    public String getId() { return id; }
+}
+
+// ======================= CLASS CUSTOMER ==========================
+class Customer {
+    private String id;
+    private String name;
+
+    public Customer() {}
+    public Customer(String id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    public void nhap(Scanner sc) {
+        System.out.print("Nhập tên khách hàng: ");
+        this.name = sc.nextLine();
+        this.id = "C" + new Random().nextInt(1000);
+    }
+
+    public String getName() { return name; }
+}
+
+// ======================= CLASS EMPLOYEE ==========================
+class Employee {
+    private String id;
+    private String name;
+
+    public Employee() {}
+    public Employee(String id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    public void nhap(Scanner sc) {
+        System.out.print("Nhập tên nhân viên: ");
+        this.name = sc.nextLine();
+        this.id = "E" + new Random().nextInt(1000);
+    }
+
+    public String getName() { return name; }
+}
+
+// ======================= CLASS ORDERITEM ==========================
+class OrderItem {
+    private static int demOT = 0;     // đếm ID tự động
+    private String id;
+    private ProductVariant variant;
+    private int quantity;
+    private BigDecimal priceAtSale;
+
+    public OrderItem(String id, ProductVariant v, int qty, BigDecimal priceAtSale) {
+        this.id = id;
+        this.variant = v;
+        this.quantity = qty;
+        this.priceAtSale = priceAtSale;
+    }
+
+    public OrderItem() {
+        demOT++;
+        this.id = "OT" + demOT;
+    }
+
+    // Hàm nhập thông tin OrderItem
+    public void nhap(Scanner sc) {
+        System.out.println("Nhập thông tin sản phẩm cho " + id);
+        this.variant = new ProductVariant();
+        this.variant.nhap(sc);
+
+        System.out.print("Nhập số lượng: ");
+        this.quantity = Integer.parseInt(sc.nextLine());
+        this.priceAtSale = variant.getPrice();
+    }
+
+    public BigDecimal getLineTotal() {
+        return priceAtSale.multiply(BigDecimal.valueOf(quantity));
+    }
+
+    @Override
+    public String toString() {
+        return id + " - " + variant.getName() + " x" + quantity + " = " + getLineTotal();
+    }
+}
+
+// ======================= CLASS ORDER ==========================
+class Order {
+    private static int demO = 0;    
+    private String id;
+    private Customer customer;
+    private Employee employee;
+    private List<OrderItem> items;
+    private OrderStatus status;
+    private LocalDateTime createdAt;
+
+    public Order(String id, Customer c, Employee e, List<OrderItem> items,
+                 OrderStatus status, LocalDateTime createdAt) {
+        this.id = id;
+        this.customer = c;
+        this.employee = e;
+        this.items = items;
+        this.status = status;
+        this.createdAt = createdAt;
+    }
+
+    public Order() {
+        demO++;
+        this.id = "O" + demO;
+        this.items = new ArrayList<>();
+        this.status = OrderStatus.NEW;
+        this.createdAt = LocalDateTime.now();
+    }
+
+    // Hàm nhập thông tin Order
+    public void nhap(Scanner sc) {
+        System.out.println("\n=== Nhập thông tin cho đơn hàng " + id + " ===");
+
+        this.customer = new Customer();
+        customer.nhap(sc);
+
+        this.employee = new Employee();
+        employee.nhap(sc);
+
+        while (true) {
+            System.out.print("\nThêm OrderItem? (y/n): ");
+            String choice = sc.nextLine();
+            if (choice.equalsIgnoreCase("n")) break;
+
+            OrderItem item = new OrderItem();
+            item.nhap(sc);
+            items.add(item);
+        }
+
+        this.status = OrderStatus.PAID;
+    }
+
+    public BigDecimal calculateTotal() {
+        BigDecimal total = BigDecimal.ZERO;
+        for (OrderItem i : items) {
+            total = total.add(i.getLineTotal());
+        }
+        return total;
+    }
+
+    public void printOrder() {
+        System.out.println("\n===== ĐƠN HÀNG #" + id + " =====");
+        System.out.println("Khách hàng: " + customer.getName());
+        System.out.println("Nhân viên: " + employee.getName());
+        System.out.println("Thời điểm tạo: " + createdAt);
+        System.out.println("Trạng thái: " + status);
+        System.out.println("Danh sách sản phẩm:");
+        for (OrderItem i : items) {
+            System.out.println("  - " + i);
+        }
+        System.out.println("Tổng tiền: " + calculateTotal());
+        System.out.println("===========================");
+    }
+}
+
+// ======================= CLASS MAIN ==========================
+public class main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        Order order1 = new Order();
+        order1.nhap(sc);
+
+        order1.printOrder();
+    }
+}
+//->Output nếu nhập xong input
+//Khách hàng: Nguyễn Văn A (C123)
+//Nhân viên: Lê Thị B (E456)
+//Thời điểm tạo: 2025-11-13T20:30:25.456
+//Trạng thái: PAID
+//Danh sách sản phẩm:
+//  - OT1 - Áo thun x2 = 280000
+//  - OT2 - Quần jean x1 = 320000
+//Tổng tiền: 60000
