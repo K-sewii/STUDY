@@ -1,0 +1,20 @@
+.layout-default{
+    &__header{
+        background-color: orange;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 20px;
+        position: sticky;
+        top: 0;
+        z-index: 999;
+    }
+    &__main {
+        padding: 20px;
+    }
+    &__footer{
+        background-color: orange;
+        text-align: center;
+        padding: 10px 20px;
+    }
+}
